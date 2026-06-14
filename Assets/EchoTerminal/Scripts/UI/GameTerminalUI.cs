@@ -14,11 +14,9 @@ public class GameTerminalUI : MonoBehaviour
 	[SerializeField] private TerminalConfig _config;
 	[SerializeField] private InputActionAsset _inputActions;
 	private TextField _inputField;
-
 	private TerminalView _view;
 
 	public Terminal Terminal => _view?.Terminal;
-
 	public static bool IsFocused { get; private set; }
 
 	private void Awake()

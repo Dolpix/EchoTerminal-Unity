@@ -394,6 +394,20 @@
     -unity-font-definition: url('../../Fonts/JetBrainsMono-SemiBold.ttf');
 }
 
+.terminal-entry-badge {
+    font-size: 10px;
+    color: #A8A8B0;
+    background-color: #3A3C42;
+    border-radius: 8px;
+    border-width: 1px;
+    border-color: #4A4C52;
+    padding: 0 5px;
+    margin-left: 6px;
+    align-self: flex-start;
+    -unity-text-align: middle-center;
+    flex-shrink: 0;
+}
+
 .filter-hide-log .terminal-entry--log         { display: none; }
 .filter-hide-warning .terminal-entry--warning { display: none; }
 .filter-hide-error .terminal-entry--error     { display: none; }

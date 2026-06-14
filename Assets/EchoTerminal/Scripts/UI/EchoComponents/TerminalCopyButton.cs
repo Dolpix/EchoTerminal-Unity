@@ -1,8 +1,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using EchoTerminal.Scripts.TerminalCore;
-using EchoTerminal.Scripts.TerminalCore.Enum;
-using EchoTerminal.Scripts.TerminalCore.Structs;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,11 +13,9 @@ public class TerminalCopyButton : IEchoComponent
 	private readonly Button _copyButton;
 	private readonly Label _copyToast;
 	private readonly VisualElement _logContainer;
-	private readonly Terminal _terminal;
 
 	public TerminalCopyButton(Terminal terminal, VisualElement root)
 	{
-		_terminal = terminal;
 		_logContainer = root?.Q<VisualElement>("log-container");
 		_copyButton = root?.Q<Button>("copy-button");
 
@@ -39,48 +35,48 @@ public class TerminalCopyButton : IEchoComponent
 
 	private void OnCopyClicked(ClickEvent evt)
 	{
-		bool hideLog = _logContainer?.ClassListContains("filter-hide-log") ?? false;
-		bool hideWarning = _logContainer?.ClassListContains("filter-hide-warning") ?? false;
-		bool hideError = _logContainer?.ClassListContains("filter-hide-error") ?? false;
-		bool hideCommand = _logContainer?.ClassListContains("filter-hide-command") ?? false;
-		bool showTimestamp = _logContainer?.ClassListContains("timestamps-visible") ?? false;
+		if (_logContainer == null)
+		{
+			return;
+		}
 
+		bool showTimestamp = _logContainer.ClassListContains("timestamps-visible");
 		var sb = new StringBuilder();
 
-		foreach (TerminalEntry entry in _terminal.Entries)
+		foreach (VisualElement row in _logContainer.Children())
 		{
-			if (hideLog && entry.Kind == LogKind.Log)
+			if (row.resolvedStyle.display == DisplayStyle.None)
 			{
 				continue;
 			}
 
-			if (hideWarning && entry.Kind == LogKind.Warning)
+			var timestamp = row.Q<Label>("timestamp");
+			var message = row.Q<Label>("message");
+			var badge = row.Q<Label>("collapse-badge");
+
+			if (message == null)
 			{
 				continue;
 			}
 
-			if (hideError && entry.Kind == LogKind.Error)
+			if (showTimestamp && timestamp != null)
 			{
-				continue;
+				sb.Append($"[{timestamp.text}] ");
 			}
 
-			if (hideCommand && entry.Kind == LogKind.Command)
+			if (badge != null && badge.resolvedStyle.display != DisplayStyle.None && !string.IsNullOrEmpty(badge.text))
 			{
-				continue;
+				sb.Append($"[{badge.text}] ");
 			}
 
-			if (showTimestamp)
-			{
-				sb.Append($"[{entry.Timestamp:HH:mm:ss}] ");
-			}
-
-			sb.AppendLine(RichTextTags.Replace(entry.Text, ""));
+			sb.Append(RichTextTags.Replace(message.text, ""));
+			sb.AppendLine();
 		}
 
 		GUIUtility.systemCopyBuffer = sb.ToString().TrimEnd();
 
 		_copyToast.AddToClassList("terminal-copy-toast--visible");
-		_copyToast.schedule.Execute(() => _copyToast.RemoveFromClassList("terminal-copy-toast--visible")) .StartingIn(1500);
+		_copyToast.schedule.Execute(() => _copyToast.RemoveFromClassList("terminal-copy-toast--visible")).StartingIn(1500);
 	}
 }
 }

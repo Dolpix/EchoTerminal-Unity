@@ -129,7 +129,7 @@ public static class CommandHintBuilder
 			tokenizer.TryGetParser(param.ParameterType, out ITokenParser parser) &&
 			parser is IHintLabeler labeler)
 		{
-			return labeler.HintLabel;
+			return $"{labeler.HintLabel}: {param.Name}";
 		}
 
 		return param.ParameterType == typeof(string) ? $"\"{param.Name}\"" : param.Name;

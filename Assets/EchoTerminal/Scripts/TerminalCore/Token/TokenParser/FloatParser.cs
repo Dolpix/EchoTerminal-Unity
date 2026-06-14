@@ -5,7 +5,7 @@ namespace EchoTerminal.Scripts.TerminalCore.Token.TokenParser
 public class FloatParser : ITokenParser, IHintLabeler
 {
 	public Type Type => typeof(float);
-	public string HintLabel => "0.0";
+	public string HintLabel => "float";
 
 	public TokenState ParseTokenState(string raw, Type expectedType = null)
 	{

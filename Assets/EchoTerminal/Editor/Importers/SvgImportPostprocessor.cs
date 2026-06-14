@@ -7,6 +7,8 @@ public class SvgImportPostprocessor : AssetPostprocessor
 	private const int _uiToolkitVectorImage = 3;
 	private const string _iconsFolder = "EchoTerminal/UI/Icons/";
 
+	private static readonly string[] _svgTypePropertyNames = { "m_SvgType", "svgType" };
+
 	private void OnPreprocessAsset()
 	{
 		if (!assetPath.EndsWith(".svg") || !assetPath.Contains(_iconsFolder))
@@ -14,8 +16,22 @@ public class SvgImportPostprocessor : AssetPostprocessor
 			return;
 		}
 
+		if (!assetImporter.GetType().Name.Contains("SVG"))
+		{
+			return;
+		}
+
 		var so = new SerializedObject(assetImporter);
-		SerializedProperty svgType = so.FindProperty("svgType");
+
+		SerializedProperty svgType = null;
+		foreach (string name in _svgTypePropertyNames)
+		{
+			svgType = so.FindProperty(name);
+			if (svgType != null)
+			{
+				break;
+			}
+		}
 
 		if (svgType == null || svgType.intValue == _uiToolkitVectorImage)
 		{

@@ -25,6 +25,7 @@ public static class HelpCommand
 	[TerminalDescription("Show all registered commands")]
 	private static void Help([Inject] Terminal terminal)
 	{
+		Tokenizer tokenizer = terminal.Tokenizer;
 		IReadOnlyCollection<string> names = terminal.Registry.GetCommandNames();
 
 		if (names.Count == 0)
@@ -73,18 +74,18 @@ public static class HelpCommand
 
 			List<(string name, CommandEntry entry)> sorted = entries.OrderBy(e => e.entry.Method.MetadataToken).ToList();
 
-			int maxLen = sorted.Max(e => VisibleLength(e.name, e.entry));
+			int maxLen = sorted.Max(e => VisibleLength(e.name, e.entry, tokenizer));
 
 			foreach ((string name, CommandEntry entry) in sorted)
 			{
-				output.AppendLine(BuildLine(name, entry, hs, maxLen));
+				output.AppendLine(BuildLine(name, entry, hs, maxLen, tokenizer));
 			}
 		}
 
 		terminal.Log(output.ToString().TrimEnd());
 	}
 
-	private static string BuildLine(string name, CommandEntry entry, HighlighterSet hs, int padToLength)
+	private static string BuildLine(string name, CommandEntry entry, HighlighterSet hs, int padToLength, Tokenizer tokenizer)
 	{
 		var sb = new StringBuilder();
 		sb.Append(_indent1);
@@ -105,7 +106,7 @@ public static class HelpCommand
 			}
 
 			sb.Append(' ');
-			sb.Append(Colorize($"<{param.ParameterType.Name} {param.Name}>", param.ParameterType, hs));
+			sb.Append(Colorize($"<{ResolveHintLabel(param, tokenizer)} {param.Name}>", param.ParameterType, hs));
 		}
 
 		string desc = entry.Method.GetCustomAttribute<TerminalDescriptionAttribute>()?.Description;
@@ -114,7 +115,7 @@ public static class HelpCommand
 			return sb.ToString();
 		}
 
-		int visLen = VisibleLength(name, entry);
+		int visLen = VisibleLength(name, entry, tokenizer);
 		int padding = padToLength - visLen;
 		sb.Append(new string(' ', padding));
 		sb.Append($"<color={_colSeparator}>{_separator}</color>");
@@ -123,7 +124,7 @@ public static class HelpCommand
 		return sb.ToString();
 	}
 
-	private static int VisibleLength(string name, CommandEntry entry)
+	private static int VisibleLength(string name, CommandEntry entry, Tokenizer tokenizer)
 	{
 		int len = _indent1.Length + 1 + name.Length;
 
@@ -139,10 +140,22 @@ public static class HelpCommand
 				continue;
 			}
 
-			len += 1 + $"<{param.ParameterType.Name} {param.Name}>".Length;
+			len += 1 + $"<{ResolveHintLabel(param, tokenizer)} {param.Name}>".Length;
 		}
 
 		return len;
+	}
+
+	private static string ResolveHintLabel(ParameterInfo param, Tokenizer tokenizer)
+	{
+		if (tokenizer != null &&
+			tokenizer.TryGetParser(param.ParameterType, out ITokenParser parser) &&
+			parser is IHintLabeler labeler)
+		{
+			return labeler.HintLabel;
+		}
+
+		return param.ParameterType == typeof(string) ? "string" : param.ParameterType.Name;
 	}
 
 	private static string Colorize(string text, Type tokenType, HighlighterSet hs)

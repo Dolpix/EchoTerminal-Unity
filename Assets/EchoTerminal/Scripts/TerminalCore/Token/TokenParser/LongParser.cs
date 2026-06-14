@@ -5,7 +5,7 @@ namespace EchoTerminal.Scripts.TerminalCore.Token.TokenParser
 public class LongParser : ITokenParser, IHintLabeler
 {
 	public Type Type => typeof(long);
-	public string HintLabel => "0";
+	public string HintLabel => "long";
 
 	public TokenState ParseTokenState(string raw, Type expectedType = null)
 	{

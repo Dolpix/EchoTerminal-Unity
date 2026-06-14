@@ -15,7 +15,8 @@ public class CommandExecutor
 	private readonly CommandRegistry _registry;
 	private readonly Tokenizer _tokenizer;
 	private readonly InjectionContainer _injector;
-
+    private HashSet<string> _silencedInputs;
+    
 	public CommandExecutor(
 		CommandParser commandParser,
 		CommandRegistry registry,
@@ -28,13 +29,21 @@ public class CommandExecutor
 		_injector = injector;
 	}
 
-	public void Execute(string input)
+    public void SetSilencedInputs(HashSet<string> silencedInputs)
+    {
+        _silencedInputs = silencedInputs;
+    }
+
+    public void Execute(string input)
 	{
 		CommandParseResult result = _commandParser.Parse(input);
 
 		if (!result.IsMatch)
 		{
-			Debug.LogError(result.GetError());
+            if (_silencedInputs == null || !_silencedInputs.Contains(input.Trim()))
+            {
+                Debug.LogError(result.GetError());
+            }
 			return;
 		}
 
@@ -68,7 +77,14 @@ public class CommandExecutor
 
 		if (entry.IsStatic)
 		{
-			entry.Method.Invoke(null, args);
+			try
+			{
+				entry.Method.Invoke(null, args);
+			}
+			catch (TargetInvocationException ex)
+			{
+				Debug.LogError($"Command '{entry.Method.Name}' threw an exception: {ex.InnerException}");
+			}
 			return;
 		}
 
@@ -98,7 +114,14 @@ public class CommandExecutor
 
 		foreach (Component instance in filtered)
 		{
-			entry.Method.Invoke(instance, args);
+			try
+			{
+				entry.Method.Invoke(instance, args);
+			}
+			catch (TargetInvocationException ex)
+			{
+				Debug.LogError($"Command '{entry.Method.Name}' on '{instance.gameObject.name}' threw an exception: {ex.InnerException}");
+			}
 		}
 	}
 

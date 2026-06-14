@@ -5,7 +5,7 @@ namespace EchoTerminal.Scripts.TerminalCore.Token.TokenParser
 public class IntParser : ITokenParser, IHintLabeler
 {
 	public Type Type => typeof(int);
-	public string HintLabel => "0";
+	public string HintLabel => "int";
 
 	public TokenState ParseTokenState(string raw, Type expectedType = null)
 	{

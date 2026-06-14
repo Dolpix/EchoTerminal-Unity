@@ -28,6 +28,7 @@ public class Terminal
 	public event Action OnSubmitted;
 	public event Action<string> OnCommandSubmitted;
 	public TerminalHighlighterCore HighlighterCore { get; }
+    public HashSet<string> SilencedInputs { get; } = new(StringComparer.OrdinalIgnoreCase);
 	private readonly List<TerminalEntry> _entries = new();
 	private readonly CommandExecutor _executor;
 	private readonly int _maxEntries;
@@ -48,6 +49,7 @@ public class Terminal
 		CommandParser = new(Registry, Tokenizer);
 		Suggestors.InitComplexSuggesters(Registry, CommandParser);
 		_executor = new(CommandParser, Registry, Tokenizer, Injector);
+        _executor.SetSilencedInputs(SilencedInputs);
 		HighlighterCore = new(CommandParser, Tokenizer, highlighterSet);
 		BindCommand.Terminal = this;
 	}
@@ -74,7 +76,8 @@ public class Terminal
 	{
 		OnCommandSubmitted?.Invoke(input);
 		OnSubmitted?.Invoke();
-		string logText = HighlighterCore.BuildHighlightedText(input);
+        bool silenced = SilencedInputs.Contains(input.Trim());
+        string logText = silenced ? input : HighlighterCore.BuildHighlightedText(input);
 		Log(logText, kind: LogKind.Command);
 		_executor.Execute(input);
 	}
