@@ -1,0 +1,41 @@
+site_name: Echo Terminal
+site_url: https://dolpix.github.io/EchoTerminal/
+repo_url: https://github.com/Dolpix/EchoTerminal
+repo_name: Dolpix/EchoTerminal
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: black
+    accent: deep orange
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  - attr_list
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Wiki:
+    - Commands: wiki/commands.md
+    - Type Parsers: wiki/type-parsers.md
+    - Autocomplete & Suggestions: wiki/autocomplete.md
+    - GameObject Targeting: wiki/targeting.md
+    - UI Components: wiki/ui-components.md
+    - Highlighting Themes: wiki/highlighting.md
+    - Command Tags: wiki/command-tags.md
+    - Inputs: wiki/inputs.md
+  - Contributing: contributing.md
