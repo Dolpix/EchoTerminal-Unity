@@ -1,6 +1,6 @@
 # Echo Terminal
 
-![Echo Terminal](../docs/echo_main_render.png)
+![Echo Terminal](echo_main_render.png)
 
 A free, open source developer console for Unity 6. Register commands with an attribute, get type-safe parsing, autocomplete, and live syntax highlighting out of the box. Every layer is replaceable.
 
