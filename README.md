@@ -20,4 +20,7 @@ Make games and become great!
 
 ---
 
-[Wiki](https://dolpix.github.io/EchoTerminal/) · [Issues](https://github.com/Dolpix/EchoTerminal/issues)
+### Links
+
+- Wiki: https://dolpixs-organization.gitbook.io/echoterminal-unity/) 
+- Open a Issue: https://github.com/Dolpix/EchoTerminal/issues
