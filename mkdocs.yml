@@ -37,15 +37,16 @@ markdown_extensions:
   - tables
 
 nav:
-  - Home: index.md
+  - Overview: index.md
   - Getting Started: getting-started.md
-  - Wiki:
-    - Commands: wiki/commands.md
-    - Type Parsers: wiki/type-parsers.md
-    - Autocomplete & Suggestions: wiki/autocomplete.md
-    - GameObject Targeting: wiki/targeting.md
-    - UI Components: wiki/ui-components.md
-    - Highlighting Themes: wiki/highlighting.md
-    - Command Tags: wiki/command-tags.md
-    - Inputs: wiki/inputs.md
+  - Common Tasks: common-tasks.md
+  - Features:
+    - Commands: features/commands.md
+    - Type Parsers: features/type-parsers.md
+    - Autocomplete & Suggestions: features/autocomplete.md
+    - GameObject Targeting: features/targeting.md
+    - UI Components: features/ui-components.md
+    - Highlighting Themes: features/highlighting.md
+    - Command Tags: features/command-tags.md
+    - Inputs: features/inputs.md
   - Contributing: contributing.md

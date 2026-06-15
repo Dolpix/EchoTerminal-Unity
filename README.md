@@ -18,53 +18,6 @@ If it saves you some time and you can spare it, [paying me](https://github.com/s
 
 Make games and become great!
 
+---
 
-## Getting Started
-
-### Requirements
-
-- Unity 6 (6000.x)
-- UI Toolkit (included in Unity 6)
-- TextMeshPro
-
-### Installation
-
-Download the unity package and install it, OR copy the `Assets/EchoTerminal` folder from this repo into your project.
-
-> You don't need the `Assets/EchoTerminal/Demo` or `Assets/EchoTerminal/Editor/Tests` folders.
-
-### Add the terminal to a scene
-
-1. Add the `EchoTerminal` prefab into your scene.
-2. Press Play.
-3. Press `~` to open the terminal.
-4. Type `help` to see registered commands.
-
-### Your first command
-
-```csharp
-public class PlayerCommands : MonoBehaviour
-{
-    [TerminalCommand("heal")]
-    void Heal(float amount)
-    {
-        GetComponent<Health>().Add(amount);
-    }
-}
-```
-
-`Terminal` scans all assemblies at startup. Type `heal 50` in the console and it fires on every active instance in the scene. No registration step needed.
-
-
-## Wiki
-
-Full documentation — commands, type parsers, autocomplete, targeting, UI components, highlighting themes, tags, and inputs:
-
-**[dolpix.github.io/EchoTerminal-Unity](https://dolpix.github.io/EchoTerminal-Unity/)**
-
-
-## Contributing
-
-Bug reports and feature requests go in [Issues](https://github.com/Dolpix/EchoTerminal/issues).
-
-Pull requests are welcome. One problem per PR. If something in the code or the docs is confusing, open an issue.
+[Wiki](https://dolpix.github.io/EchoTerminal/) · [Issues](https://github.com/Dolpix/EchoTerminal/issues)

@@ -6,8 +6,9 @@
 - UI Toolkit (included in Unity 6)
 - TextMeshPro
 
-!!! note
-    Echo Terminal may work on earlier Unity versions but has only been tested on Unity 6. If you hit issues on a specific version, [open a ticket](https://github.com/Dolpix/EchoTerminal/issues).
+{% hint style="info" %}
+Echo Terminal may work on earlier Unity versions but has only been tested on Unity 6. If you hit issues on a specific version, [open a ticket](https://github.com/Dolpix/EchoTerminal/issues).
+{% endhint %}
 
 ---
 
@@ -15,8 +16,9 @@
 
 Download the Unity package and install it, **or** copy the `Assets/EchoTerminal` folder from the repo into your project.
 
-!!! tip
-    You don't need the `Assets/EchoTerminal/Demo` or `Assets/EchoTerminal/Editor/Tests` folders.
+{% hint style="success" %}
+You don't need the `Assets/EchoTerminal/Demo` or `Assets/EchoTerminal/Editor/Tests` folders.
+{% endhint %}
 
 ---
 
@@ -48,4 +50,4 @@ public class PlayerCommands : MonoBehaviour
 
 ---
 
-Next: [Commands →](wiki/commands.md)
+Next: [Common Tasks →](common-tasks.md)
