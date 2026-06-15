@@ -18,9 +18,6 @@ If it saves you some time and you can spare it, [paying me](https://github.com/s
 
 Make games and become great!
 
-Signed Dolpix
-
-
 
 ## Getting Started
 
@@ -59,21 +56,11 @@ public class PlayerCommands : MonoBehaviour
 `Terminal` scans all assemblies at startup. Type `heal 50` in the console and it fires on every active instance in the scene. No registration step needed.
 
 
-
-## Examples
-
-<!-- Replace these with actual GIFs once recorded -->
-![Registering and running a command](docs/gif_basic_command.gif)
-![Tab complete and syntax highlighting](docs/gif_autocomplete.gif)
-
-
-
 ## Wiki
 
 Full documentation — commands, type parsers, autocomplete, targeting, UI components, highlighting themes, tags, and inputs:
 
-**[dolpix.github.io/EchoTerminal](https://dolpix.github.io/EchoTerminal)**
-
+**[dolpix.github.io/EchoTerminal-Unity](https://dolpix.github.io/EchoTerminal-Unity/)**
 
 
 ## Contributing
@@ -81,15 +68,3 @@ Full documentation — commands, type parsers, autocomplete, targeting, UI compo
 Bug reports and feature requests go in [Issues](https://github.com/Dolpix/EchoTerminal/issues).
 
 Pull requests are welcome. One problem per PR. If something in the code or the docs is confusing, open an issue.
-
-
-
-## Support
-
-This project is free and open source. If it saved you time or helped you ship, consider supporting it:
-
-- [GitHub Sponsors](https://github.com/sponsors/Dolpix)
-
-Engineers and artists should own their tools. Take this one.
-
-Apache 2.0 — use it, fork it, ship it.
