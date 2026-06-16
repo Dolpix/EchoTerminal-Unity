@@ -1,11 +1,12 @@
 # GameObject Targeting
 
-Any command parameter of type `Target` gets `@name` autocomplete populated from the active scene. `@all` matches every registered instance.
+Implementing both the `TerminalCommand` and `TerminalTarget` attributes will allow for you to have a specific MonoBehavior you can target. `@all` matches every registered instance.
+It is important to note that gameobjects should try to avoid spaces in name as the current parser pattern doesnt recognise them.
 
 ```csharp
 [TerminalCommand("freeze")]
 [TerminalTarget]
-void Freeze(Target target)
+void Freeze()
 {
     // target.Value holds "@player", "@enemy_03", "@all", etc.
 }
@@ -21,8 +22,4 @@ void Freeze(Target target)
 
 ## @all
 
-`@all` is a reserved keyword. When passed, the command fires on every registered instance rather than a specific one. No extra handling needed in your command — the dispatch layer handles it.
-
----
-
-Next: [UI Components →](ui-components.md)
+`@all` is a reserved keyword. When passed, the command fires on every registered instance rather than a specific one. No extra handling needed in your command, the dispatch layer handles it.

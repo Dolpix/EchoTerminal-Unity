@@ -1,6 +1,6 @@
 # Commands
 
-Attach `[TerminalCommand]` to any static or MonoBehaviour method. `Terminal` discovers it automatically at startup — no manual registration needed.
+Attach `[TerminalCommand]` to any static or MonoBehaviour method. `Terminal` discovers it automatically at startup, no manual registration needed.
 
 ```csharp
 [TerminalCommand("setspeed")]
@@ -32,8 +32,4 @@ For types not in this list, see [Type Parsers](type-parsers.md).
 
 ## Multiple instances
 
-If multiple active MonoBehaviours in the scene have the same command registered, the terminal fires on all of them. This is intentional — useful for broadcasting to every enemy, every spawner, etc.
-
----
-
-Next: [Type Parsers →](type-parsers.md)
+If multiple active MonoBehaviours in the scene have the same command registered, the terminal fires on all of them. This is intentional, useful for broadcasting to every enemy, every spawner, etc.

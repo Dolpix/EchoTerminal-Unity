@@ -12,12 +12,11 @@ Assign the set to your `TerminalConfig` to apply it.
 [CreateAssetMenu(menuName = "Echo Terminal/Custom Highlighter")]
 public class WarnHighlighter : TokenHighlighter
 {
-    public override string Apply(string text) => $"<color=#FF4400>{text}</color>";
+    public override string Apply(string text)
+    {
+        return $"<color=#FF4400>{text}</color>";
+    }
 }
 ```
 
-`Apply` receives the raw token string and returns a TMP rich-text wrapped version. Keep it to a single `<color>` or `<b>` wrap — nesting multiple tags can break TMP layout.
-
----
-
-Next: [Command Tags →](command-tags.md)
+`Apply` receives the raw token string and returns a TMP rich-text wrapped version. Keep it to a single `<color>` or `<b>` wrap, nesting multiple tags can break TMP layout.

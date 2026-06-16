@@ -24,8 +24,4 @@ terminal.Registry.EnableByTag("debug");
 - Toggle feature-flag commands during QA
 - Separate editor-only commands from runtime ones
 
-A disabled command is hidden from `help` and won't fire if typed — it's as if it was never registered.
-
----
-
-Next: [Inputs →](inputs.md)
+A disabled command is hidden from `help` and won't fire if typed, it's as if it was never registered.

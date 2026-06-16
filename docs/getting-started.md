@@ -24,10 +24,21 @@ You don't need the `Assets/EchoTerminal/Demo` or `Assets/EchoTerminal/Editor/Tes
 
 ## Add the terminal to a scene
 
-1. Add the `EchoTerminal` prefab into your scene.
-2. Press Play.
-3. Press `~` to open the terminal.
-4. Type `help` to see all registered commands.
+**1. Add the `EchoTerminal` prefab into your scene.**
+
+![Add prefab to scene](assets/getting-started/step-1-add-prefab.gif)
+
+**2. Press Play.**
+
+![Press Play](assets/getting-started/step-2-press-play.gif)
+
+**3. Press `~` to open the terminal.**
+
+![Open the terminal](assets/getting-started/step-3-open-terminal.gif)
+
+**4. Type `help` to see all registered commands.**
+
+![Help command](assets/getting-started/step-4-help-command.gif)
 
 For editor tooling, use `EditorTerminalUI` inside an `EditorWindow` instead.
 
@@ -47,7 +58,3 @@ public class PlayerCommands : MonoBehaviour
 ```
 
 `Terminal` scans all assemblies at startup. Type `heal 50` in the console and this method fires on every active instance in the scene. No registration step needed.
-
----
-
-Next: [Common Tasks →](common-tasks.md)

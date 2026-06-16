@@ -2,7 +2,7 @@
 
 Open the input asset under the `Inputs` folder to remap any keybind, including the key that opens the terminal.
 
-The input asset uses Unity's Input System. Any binding supported by the Input System can be used — keyboard, gamepad, mouse, or combinations.
+The input asset uses Unity's Input System. Any binding supported by the Input System can be used. Any keyboard, gamepad, mouse, or combinations.
 
 ---
 

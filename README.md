@@ -8,9 +8,9 @@
 
 ### Developer message
 
-I've seen a lot of paid dev consoles and it got me thinking - why isn't there a free one that's actually well built? So I took some time and made this. No price tag, no bloat, just a clean lib you can read, own, and modify.
+I've seen a lot of paid dev consoles and it got me thinking - why isn't there a free one that's actually well built? So I took some time and made this.
 
-Every layer is yours. Keep the default UI, swap out just the parts you don't like, or gut the whole thing and wire the backend into something completely your own. The tokenizer, the parser, the suggesters, the highlighting - all of it is open. That's what open source is supposed to mean. Your tools should belong to you, not a license agreement.
+Not sure what a developer console is for? It's an in-game terminal that lets you run commands while your game is running. Heal your player, spawn enemies, teleport to a position, toggle a feature flag without touching the editor or rebuilding. I use it constantly to skip through level sections, test edge cases, and debug mid-session. It's especially handy in multiplayer builds where you want to poke at live state without stopping the session.
 
 Grab it, break it, make something awesome with it, and share it with your dev friends. Open to any questions, issues, or ideas you've got!
 

@@ -21,7 +21,7 @@ view.AddComponent(new StatusBar(view.Terminal, root));
 
 ## Replacing the layout
 
-Replace the UXML entirely to change the terminal layout. Only include `IEchoComponent` types that match the elements present in your markup — components that query for a missing element will no-op or error depending on implementation.
+Replace the UXML entirely to change the terminal layout. Only include `IEchoComponent` types that match the elements present in your markup, components that query for a missing element will no-op or error depending on implementation.
 
 ---
 
@@ -33,7 +33,3 @@ Replace the UXML entirely to change the terminal layout. Only include `IEchoComp
 | `InputField` | Text input with hint overlay |
 | `SuggestionList` | Tab-complete dropdown |
 | `HighlightOverlay` | Live TMP syntax coloring |
-
----
-
-Next: [Highlighting Themes →](highlighting.md)
